@@ -1,8 +1,11 @@
+[variables]
+PHP_VERSION = "8.3"
+
 [phases.setup]
-nixPkgs = ["php83", "php83Extensions.pdo_mysql", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.tokenizer", "php83Extensions.fileinfo", "composer"]
+nixPkgs = ["php83", "php83Extensions.pdo_mysql", "php83Extensions.mbstring", "php83Extensions.xml", "php83Extensions.curl", "php83Extensions.zip", "php83Extensions.tokenizer", "php83Extensions.fileinfo", "php83Extensions.openssl", "composer"]
 
 [phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader --ignore-platform-reqs"]
+cmds = ["composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-reqs"]
 
 [phases.build]
 cmds = ["php artisan config:cache", "php artisan route:cache"]
